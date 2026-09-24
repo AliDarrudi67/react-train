@@ -1,31 +1,38 @@
+import { useState } from "react";
 import "./App.css";
-import Course from "./components/Course";
-import Footer from "./components/footer/Footer";
-import Header from "./components/Header";
+import Button from "./components/button/Button";
 
 function App() {
-  const articles = [
-    {
-      id: 1,
-      title: "angular",
-    },
-    {
-      id: 2,
-      title: "react",
-    },
-    {
-      id: 3,
-      title: "vue",
-    },
-  ];
+  const [counter, setCounter] = useState(10);
+  const changeCount = (state) => {
+    if (state == "add") {
+      setCounter(counter + 1);
+    } else {
+      setCounter(counter - 1);
+    }
+  };
   return (
-    <>
-      <Header />
-      <Course {...articles[0]} />
-      <Course {...articles[1]} />
-      <Course {...articles[2]} />
-      <Footer />
-    </>
+    <div
+      className={`p-8 flex flex-col gap-5 ${counter > 15 ? "bg-red-100" : "bg-blue-100"}`}
+    >
+      <h1>{counter}C</h1>
+      <div className="flex gap-5 justify-center">
+        <Button
+          title="Increase"
+          colorClass="blue"
+          clickHandler={() => {
+            changeCount("add");
+          }}
+        ></Button>
+        <Button
+          title="Decrease"
+          colorClass="red"
+          clickHandler={() => {
+            changeCount("minus");
+          }}
+        ></Button>
+      </div>
+    </div>
   );
 }
 
