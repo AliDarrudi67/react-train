@@ -1,41 +1,34 @@
 import { useState } from "react";
 import "./App.css";
-import Button from "./components/button/Button";
 import AuthForm from "./pages/auth-form/AuthForm";
+import Weather from "./pages/weather/Weather";
 
 function App() {
-  const [counter, setCounter] = useState(10);
-  const changeCount = (state) => {
-    if (state == "add") {
-      setCounter(counter + 1);
-    } else {
-      setCounter(counter - 1);
-    }
-  };
+  const [project, setProject] = useState("");
   return (
     <>
-      <AuthForm></AuthForm>
-      <div
-        className={`p-8 flex flex-col gap-5 ${counter > 15 ? "bg-red-100" : "bg-blue-100"}`}
-      >
-        <h1>{counter}C</h1>
-        <div className="flex gap-5 justify-center">
-          <Button
-            title="Increase"
-            colorClass="blue"
-            clickHandler={() => {
-              changeCount("add");
+      <ul className="flex p-2 rounded items-center justify-center gap-5">
+        <li className="border px-3 py-1 rounded cursor-pointer">
+          <a
+            onClick={() => {
+              setProject("form");
             }}
-          ></Button>
-          <Button
-            title="Decrease"
-            colorClass="red"
-            clickHandler={() => {
-              changeCount("minus");
+          >
+            پروژه فرم
+          </a>
+        </li>
+        <li className="border px-3 py-1 rounded cursor-pointer">
+          <a
+            onClick={() => {
+              setProject("weather");
             }}
-          ></Button>
-        </div>
-      </div>
+          >
+            پروژه اب و هوا
+          </a>
+        </li>
+      </ul>
+      {project == "form" && <AuthForm />}
+      {project == "weather" && <Weather />}
     </>
   );
 }
