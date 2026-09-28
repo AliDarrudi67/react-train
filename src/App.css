@@ -1,1 +1,14 @@
 @import "tailwindcss";
+@font-face {
+  font-family: "vazir";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/font/vazir.ttf") format("opentype");
+}
+* {
+  font-family: vazir;
+}
+body {
+  margin: 0;
+}

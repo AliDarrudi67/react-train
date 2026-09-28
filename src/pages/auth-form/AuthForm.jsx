@@ -55,19 +55,25 @@ export default function AuthForm() {
         {formStatus === "register" && (
           <div className="bg-white rounded-xl shadow p-6">
             <h2 className="text-lg font-bold text-gray-800 mb-4">ثبت‌نام</h2>
-            <form className="space-y-3">
+            <form className="space-y-3" autoComplete="off">
               <input
+                name="fullname"
+                autoComplete="off"
                 type="text"
                 placeholder="نام و نام خانوادگی"
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <input
                 type="email"
+                name="signup-email"
+                autoComplete="off"
                 placeholder="ایمیل"
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <input
                 type="password"
+                name="signup-password"
+                autoComplete="new-password"
                 placeholder="رمز عبور"
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
               />

@@ -13,9 +13,9 @@ export default function Weather() {
   return (
     <>
       <div
-        className={`p-8 flex flex-col gap-5 ${counter > 15 ? "bg-red-100" : "bg-blue-100"}`}
+        className={`p-8 flex items-center justify-center flex-col gap-5 ${counter > 15 ? "bg-red-100" : "bg-blue-100"}`}
       >
-        <h1>{counter}C</h1>
+        <h1 className="text-[30px]">{counter}C</h1>
         <div className="flex gap-5 justify-center">
           <Button
             title="Increase"

@@ -8,7 +8,9 @@ function App() {
   return (
     <>
       <ul className="flex p-2 rounded items-center justify-center gap-5">
-        <li className="border px-3 py-1 rounded cursor-pointer">
+        <li
+          className={`border px-3 py-1 rounded cursor-pointer ${project == "form" ? "bg-blue-100" : ""}`}
+        >
           <a
             onClick={() => {
               setProject("form");
@@ -17,7 +19,9 @@ function App() {
             پروژه فرم
           </a>
         </li>
-        <li className="border px-3 py-1 rounded cursor-pointer">
+        <li
+          className={`border px-3 py-1 rounded cursor-pointer ${project == "weather" ? "bg-blue-100" : ""}`}
+        >
           <a
             onClick={() => {
               setProject("weather");
