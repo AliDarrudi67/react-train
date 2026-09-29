@@ -5,7 +5,7 @@ import ToDoList from "./pages/todo-list/ToDoList";
 import Weather from "./pages/weather/Weather";
 
 function App() {
-  const [project, setProject] = useState("");
+  const [project, setProject] = useState("todo-list");
   return (
     <>
       <ul className="flex p-5 rounded items-center justify-center gap-5">

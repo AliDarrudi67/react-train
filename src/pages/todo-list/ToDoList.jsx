@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Task from "../../components/task/Task";
+import TaskForm from "../../components/taskForm/TaskForm";
 
 export default function ToDoList() {
   const [tasks, setTasks] = useState([
@@ -25,6 +26,41 @@ export default function ToDoList() {
       isImportant: true,
     },
   ]);
+  const [mainTasks, setMainTasks] = useState(tasks);
+  const [showTaskForm, setShowTaskForm] = useState(false);
+
+  function deleteTask(id) {
+    setTasks(tasks.filter((item) => item.id !== id));
+  }
+
+  function doneTask(id) {
+    const index = tasks.findIndex((item) => item.id == id);
+    if (index >= 0) {
+      setTasks((prev) =>
+        prev.map((task) =>
+          task.id == id ? { ...task, status: "done" } : task,
+        ),
+      );
+    }
+  }
+
+  function showImportantTasks(event) {
+    if (event.target.checked) {
+      setTasks(mainTasks.filter((item) => item.isImportant));
+    } else {
+      setTasks(mainTasks);
+    }
+  }
+
+  function closeTaskForm() {
+    setShowTaskForm(false);
+  }
+
+  function addTask(task) {
+    console.log(task);
+    setTasks((prev) => [...prev, task]);
+    setMainTasks((prev) => [...prev, task]);
+  }
   return (
     <>
       <div dir="rtl" className="min-h-screen bg-gray-50 py-10 px-4">
@@ -41,17 +77,22 @@ export default function ToDoList() {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-4">
               <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-                <input type="checkbox" className="accent-green-600" />
+                <input
+                  type="checkbox"
+                  className="accent-green-600"
+                  onChange={() => {
+                    showImportantTasks(event);
+                  }}
+                />
                 فقط تسک‌های مهم
-              </label>
-              <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-                <input type="checkbox" className="accent-green-600" />
-                نمایش تسک‌های کامل‌شده
               </label>
             </div>
 
             <button
               type="button"
+              onClick={() => {
+                setShowTaskForm(true);
+              }}
               className="bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg px-4 py-2 transition"
             >
               ثبت تسک
@@ -67,7 +108,16 @@ export default function ToDoList() {
             {tasks
               .filter((task) => task.status == "pending")
               .map((item) => (
-                <Task key={item?.id} task={item} />
+                <Task
+                  key={item?.id}
+                  task={item}
+                  doneTask={() => {
+                    doneTask(item.id);
+                  }}
+                  deleteTask={() => {
+                    deleteTask(item.id);
+                  }}
+                />
               ))}
           </section>
 
@@ -85,6 +135,10 @@ export default function ToDoList() {
           </section>
         </div>
       </div>
+
+      {showTaskForm && (
+        <TaskForm closeTaskForm={closeTaskForm} addTask={addTask} />
+      )}
     </>
   );
 }
