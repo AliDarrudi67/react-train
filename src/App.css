@@ -11,4 +11,98 @@
 }
 body {
   margin: 0;
+  direction: rtl;
+}
+:root {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.cart-cb:checked {
+  counter-increment: cartCount 1;
+}
+.wish-cb:checked {
+  counter-increment: wishCount 1;
+}
+#cartBadge::after {
+  content: counter(cartCount);
+}
+#wishBadge::after {
+  content: counter(wishCount);
+}
+
+.popover {
+  transform: translateY(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.15s ease;
+}
+.bar-item:hover .popover,
+.bar-item:focus-within .popover {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body:has(.cart-cb:checked) #cartEmpty {
+  display: none;
+}
+body:has(.wish-cb:checked) #wishEmpty {
+  display: none;
+}
+
+.pop-row {
+  display: none;
+}
+body:has(#cart-1:checked) #cart-row-1 {
+  display: flex;
+}
+body:has(#cart-2:checked) #cart-row-2 {
+  display: flex;
+}
+body:has(#cart-3:checked) #cart-row-3 {
+  display: flex;
+}
+body:has(#cart-4:checked) #cart-row-4 {
+  display: flex;
+}
+body:has(#cart-5:checked) #cart-row-5 {
+  display: flex;
+}
+body:has(#cart-6:checked) #cart-row-6 {
+  display: flex;
+}
+body:has(#wish-1:checked) #wish-row-1 {
+  display: flex;
+}
+body:has(#wish-2:checked) #wish-row-2 {
+  display: flex;
+}
+body:has(#wish-3:checked) #wish-row-3 {
+  display: flex;
+}
+body:has(#wish-4:checked) #wish-row-4 {
+  display: flex;
+}
+body:has(#wish-5:checked) #wish-row-5 {
+  display: flex;
+}
+body:has(#wish-6:checked) #wish-row-6 {
+  display: flex;
 }
