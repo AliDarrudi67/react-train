@@ -44,26 +44,28 @@ export default function Shop() {
   const [cart, setCart] = useState([]);
 
   function addToCart(product) {
-    console.log(cart);
-
     const index = cart.findIndex((item) => item.id === product.id);
     if (index >= 0) {
       setCart((prev) =>
         prev.map((item) =>
-          item.id === product.id ? { ...item, count: (item.count += 1) } : item,
+          item.id === product.id ? { ...item, count: item.count + 1 } : item,
         ),
       );
     } else {
-      product.count = 1;
       const object = {
         ...product,
         count: 1,
       };
-      setCart((prev) => [...prev, object]);
+      setCart((prev) => {
+        const newCart = [...prev, object];
+        return newCart;
+      });
     }
-    console.log(cart);
   }
 
+  function deleteProductFromCart(id) {
+    setCart(cart.filter((item) => item.id !== id));
+  }
   return (
     <>
       <header className="max-w-6xl mx-auto px-4 pt-8 pb-4">
@@ -85,7 +87,7 @@ export default function Shop() {
         </div>
       </main>
 
-      <Navbar products={products} />
+      <Navbar cart={cart} deleteProductFromCart={deleteProductFromCart} />
     </>
   );
 }

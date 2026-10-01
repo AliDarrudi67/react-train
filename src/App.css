@@ -37,15 +37,6 @@ body {
 .cart-cb:checked {
   counter-increment: cartCount 1;
 }
-.wish-cb:checked {
-  counter-increment: wishCount 1;
-}
-#cartBadge::after {
-  content: counter(cartCount);
-}
-#wishBadge::after {
-  content: counter(wishCount);
-}
 
 .popover {
   transform: translateY(8px);
@@ -58,51 +49,4 @@ body {
   transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
-}
-
-body:has(.cart-cb:checked) #cartEmpty {
-  display: none;
-}
-body:has(.wish-cb:checked) #wishEmpty {
-  display: none;
-}
-
-.pop-row {
-  display: none;
-}
-body:has(#cart-1:checked) #cart-row-1 {
-  display: flex;
-}
-body:has(#cart-2:checked) #cart-row-2 {
-  display: flex;
-}
-body:has(#cart-3:checked) #cart-row-3 {
-  display: flex;
-}
-body:has(#cart-4:checked) #cart-row-4 {
-  display: flex;
-}
-body:has(#cart-5:checked) #cart-row-5 {
-  display: flex;
-}
-body:has(#cart-6:checked) #cart-row-6 {
-  display: flex;
-}
-body:has(#wish-1:checked) #wish-row-1 {
-  display: flex;
-}
-body:has(#wish-2:checked) #wish-row-2 {
-  display: flex;
-}
-body:has(#wish-3:checked) #wish-row-3 {
-  display: flex;
-}
-body:has(#wish-4:checked) #wish-row-4 {
-  display: flex;
-}
-body:has(#wish-5:checked) #wish-row-5 {
-  display: flex;
-}
-body:has(#wish-6:checked) #wish-row-6 {
-  display: flex;
 }
