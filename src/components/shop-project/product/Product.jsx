@@ -1,4 +1,4 @@
-export default function Product({ product, addToCart }) {
+export default function Product({ product, addToCart, addToFav }) {
   return (
     <>
       <div className="bg-white rounded-xl border border-neutral-200 p-3 flex flex-col">
@@ -14,8 +14,11 @@ export default function Product({ product, addToCart }) {
           >
             <span> افزودن به سبد</span>
           </button>
-          <button className="text-xs border border-neutral-300 rounded-lg px-3 py-2 cursor-pointer">
-            خوشم میاد
+          <button
+            className="text-xs border border-neutral-300 rounded-lg px-3 py-2 cursor-pointer"
+            onClick={addToFav}
+          >
+            {product.isFav ? "بدم میاد" : " خوشم میاد"}
           </button>
         </div>
       </div>
